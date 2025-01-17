@@ -4,6 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from './ui/button';
+import { Author, Startup } from '@/sanity/types';
+
+export type StartupTypeCard = Omit<Startup, 'author'> & { author: Author };
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 	const {
@@ -38,7 +41,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 				</div>
 				<Link href={`/user/${authorId}`}>
 					<Image
-						src={image}
+						src={image!}
 						alt="https://placehold.co/600x400"
 						width={48}
 						height={48}
@@ -49,7 +52,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 			<Link href={`/startup/${_id}`}>
 				<p className="start-up-card_desc">{description}</p>
 				<Image
-					src={image}
+					src={image!}
 					alt="https://placehold.co/600x400"
 					width={600}
 					height={400}
@@ -57,13 +60,12 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 				/>
 			</Link>
 			<div className="flex-between gap-3 mt-5">
-				<Link href={`/?query=${category.toLowerCase()}`}>
+				<Link href={`/?query=${category?.toLowerCase()}`}>
 					<p className="text-16-medium">{category}</p>
 				</Link>
-                <Button className='startup-card_btn' asChild>
-                    <Link href={`/startup/${_id}`}>View Startup</Link>
-                </Button>
-
+				<Button className="startup-card_btn" asChild>
+					<Link href={`/startup/${_id}`}>Claim Rewards</Link>
+				</Button>
 			</div>
 		</li>
 	);

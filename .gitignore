@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+git remote add origin git@github.com:Enockkipkoech/cypherpup-frontend.git

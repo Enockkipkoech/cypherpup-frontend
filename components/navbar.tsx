@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import { auth, signOut, signIn } from '@/auth';
+import { WalletConnect } from '@/components/walletConnect';
 
 const navbar = async () => {
 	const session = await auth();
@@ -17,7 +18,9 @@ const navbar = async () => {
 					{session && session?.user ? (
 						<>
 							<Link href="/startup/create" className="font-semibold">
-								<span className="max-sm:hidden">Create</span>
+								<span className="max-sm:hidden" {...WalletConnect}>
+									Connect
+								</span>
 							</Link>
 
 							<form

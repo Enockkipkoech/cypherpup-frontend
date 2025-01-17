@@ -55,8 +55,8 @@ const workSans = localFont({
 });
 
 export const metadata: Metadata = {
-	title: 'Blockchain Startup',
-	description: 'Ideate, build, and launch your blockchain startup.',
+	title: 'CypherPup Meme Coin',
+	description: 'CypherPup - The ultimate meme coin platform',
 };
 
 export default function RootLayout({

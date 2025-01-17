@@ -1,5 +1,8 @@
 import SearchForm from '@/components/SearchForm';
-import StartupCard from '@/components/StartupCard';
+import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
+import { sanityFetch, SanityLive } from '@/sanity/lib/live';
+import { STARTUPS_QUERY } from '@/sanity/lib/queries';
+
 
 export default async function Home({
 	searchParams,
@@ -7,28 +10,21 @@ export default async function Home({
 	searchParams: Promise<{ query?: string }>;
 }) {
 	const query = (await searchParams).query;
+	const params = { search: query || null };
 
-	const posts = [
-		{
-			_createdAt: `${new Date().toDateString()}`,
-			views: 233,
-			author: { _id: 1, name: 'Enock Kipkoech' },
-			_id: 1,
-			description: 'A platform for connecting techpreneurs with startups',
-			title: 'Techpreneur Connect',
-			image: 'https://placehold.co/48x48/000000/FFFFFF/png',
+	const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
-			category: 'Tech',
-		},
-	];
 	return (
 		<>
 			<section className="pink_container">
 				<h1 className="heading">
-					Pictch Your Startup, <br /> Connect with Techpreneurs
+					CYPHERPUP MEME COIN <br />{' '}
+					<h2 className="sub-heading !max-w-3xl">
+						Powered By Cypherium.io & CypherPup Community
+					</h2>
 				</h1>
 				<p className="sub-heading !max-w-3xl">
-					Submit Ideas, Pitch, and Get Funded!
+					`Unleash the power of memes on Cypherium!`
 				</p>
 
 				<SearchForm query={query} />
@@ -36,22 +32,23 @@ export default async function Home({
 
 			<section className="section_container">
 				<p className="text-30-semibold">
-					{query ? `Search results for "${query}"` : 'All Startups'}
+					{query ? `Search results for "${query}"` : 'All Memes & Rewards'}
 				</p>
 
 				<ul className="mt-7 card_grid">
 					{posts?.length > 0 ? (
-						posts.map((post: StartupCardType, index: number) => (
-							<StartupCard key={post?._id} post={post} />
-						))
+						posts.map(
+							(post: StartupTypeCard, index: number) => (
+								console.log({ index, post }),
+								(<StartupCard key={post?._id} post={post} />)
+							)
+						)
 					) : (
-						<p className="no-results">No startups found</p>
+						<p className="no-results">No Memes found</p>
 					)}
 				</ul>
 			</section>
+			<SanityLive />
 		</>
 	);
 }
-
-// npm install --legacy-peer-deps --save @sanity/vision@3 sanity@3 @sanity/image-url@1 styled-components@6'
-// npm warn deprecated @sanity/block-tools@3.70.0: Renamed - use `@portabletext/block-tools` instead. `@sanity/block-tools` will no longer receive updates.
