@@ -1,5 +1,5 @@
 import { formatDate } from '@/lib/utils';
-import { EyeIcon } from 'lucide-react';
+import { Coins } from 'lucide-react';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -25,8 +25,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 			<div className="flex-between">
 				<p className="startup_card_date">{formatDate(_createdAt)}</p>
 				<div className="flex gap-1.5">
-					<EyeIcon className="size-6 text-primary" size={20} />
-					<span className="text-16-medium">{views}</span>
+					<Coins className="size-6 text-primary" size={20} />
+					<span className="text-16-medium">{views} Tokens</span>
 				</div>
 			</div>
 
@@ -64,7 +64,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 					<p className="text-16-medium">{category}</p>
 				</Link>
 				<Button className="startup-card_btn" asChild>
-					<Link href={`/startup/${_id}`}>Claim Rewards</Link>
+					<Link href={`/startup/${_id}`}>Rewards</Link>
 				</Button>
 			</div>
 		</li>

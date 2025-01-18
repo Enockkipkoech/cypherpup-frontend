@@ -1,8 +1,8 @@
-"use client"
+'use client';
 import React from 'react';
-import { auth } from '@/auth';
 import { useState } from 'react';
 import { ethers } from 'ethers';
+import Link from 'next/link';
 
 declare global {
 	interface Window {
@@ -12,9 +12,6 @@ declare global {
 }
 
 const WalletConnect = () => {
-	const session = auth();
-	console.log({ session });
-
 	const [walletAddress, setWalletAddress] = useState<string | null>(null);
 
 	const connectWallet = async () => {
@@ -31,7 +28,9 @@ const WalletConnect = () => {
 			{walletAddress ? (
 				<p>Connected Wallet: {walletAddress}</p>
 			) : (
-				<button onClick={connectWallet}>Connect Wallet</button>
+				<button onClick={connectWallet}>
+					<Link href={`/connect`}>Connect</Link>
+				</button>
 			)}
 		</div>
 	);

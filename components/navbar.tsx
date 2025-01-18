@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import { auth, signOut, signIn } from '@/auth';
-import { WalletConnect } from '@/components/walletConnect';
+// import { WalletConnect } from '@/components/walletConnect';
 
 const navbar = async () => {
 	const session = await auth();
@@ -17,10 +17,8 @@ const navbar = async () => {
 				<div className="flex items-center gap-5 text-black">
 					{session && session?.user ? (
 						<>
-							<Link href="/startup/create" className="font-semibold">
-								<span className="max-sm:hidden" {...WalletConnect}>
-									Connect
-								</span>
+							<Link href="/connect" className="font-semibold">
+								<span className="max-sm:hidden">Connect</span>
 							</Link>
 
 							<form
